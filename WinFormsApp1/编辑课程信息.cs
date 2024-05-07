@@ -13,6 +13,7 @@ namespace WinFormsApp1
 {
     public partial class 编辑课程信息 : Form
     {
+        // 这个是一个注释
         private string selectedCourseNumber;
         public delegate void CourseEditedHandler();
         public event CourseEditedHandler OnCourseEdited;
