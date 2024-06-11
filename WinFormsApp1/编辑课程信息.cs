@@ -15,7 +15,7 @@ namespace WinFormsApp1
     {
         // 这个是一个注释 zht 写的1234567890
 
-        private string selectedCourseNumber;
+        private string selectedNumber;
         public delegate void CourseEditedHandler();
         public event CourseEditedHandler OnCourseEdited;
         private string connectionString = @"Data Source=LAPTOP-DN3TKTF5;Initial Catalog=Class;Integrated Security=True;MultipleActiveResultSets=true";
