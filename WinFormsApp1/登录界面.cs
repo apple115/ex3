@@ -15,7 +15,8 @@ namespace WinFormsApp1
     public partial class 登录界面 : Form
     {
         public string Username;
-        public string connectionString = @"Data Source=LAPTOP-DN3TKTF5;Initial Catalog=Class;Integrated Security=True;MultipleActiveResultSets=true";
+        // 使用文件读取SQLSTRING.txt
+        public string connectionString = File.ReadAllText(@"../../../Resources/SQLSTRING.txt");
         public 登录界面()
         {
             InitializeComponent();
