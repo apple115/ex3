@@ -15,7 +15,7 @@ namespace WinFormsApp1
     public partial class 教务界面 : Form
     {
         private string Username;
-        public string connectionString = @"Data Source=LAPTOP-DN3TKTF5;Initial Catalog=Class;Integrated Security=True;MultipleActiveResultSets=true";
+        private string connectionString = File.ReadAllText(@"../../../Resources/SQLSTRING.txt");
         public 教务界面(string Username)
         {
             InitializeComponent();
