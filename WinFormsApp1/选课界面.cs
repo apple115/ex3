@@ -152,7 +152,7 @@ namespace WinFormsApp1
         {
             try
             {
-                int userScore = GetUserScore(loggedInUsername);
+                int userScore = Tools.Instance.GetUserScore(loggedInUsername);
                 lb剩余学分.Text = $"你还剩 {userScore} 学分";
             }
             catch (Exception ex)
@@ -182,7 +182,7 @@ namespace WinFormsApp1
                 string classNumber = selectedRow["课号"].ToString();
                 int courseScore = int.Parse(selectedRow["学分"].ToString());
                 // 查询当前用户的学分
-                int userScore = GetUserScore(loggedInUsername);
+                int userScore =Tools.Instance.GetUserScore(loggedInUsername);
                 // 检查学分是否足够
                 if (userScore >= courseScore)
                 {
@@ -202,21 +202,6 @@ namespace WinFormsApp1
             catch (Exception ex)
             {
                 MessageBox.Show("选课失败：" + ex.Message);
-            }
-        }
-        //查询当前用户学分
-        private int GetUserScore(string username)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = "SELECT Score FROM Student WHERE Username = @Username";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@Username", username);
-                    object result = command.ExecuteScalar();
-                    return result != null ? Convert.ToInt32(result) : 0;
-                }
             }
         }
         // 更新 Student 表中的学分
