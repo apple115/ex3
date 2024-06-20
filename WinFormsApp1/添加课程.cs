@@ -13,7 +13,7 @@ namespace WinFormsApp1
 {
     public partial class 添加课程 : Form
     {
-        private string connectionString = @"Data Source=LAPTOP-DN3TKTF5;Initial Catalog=Class;Integrated Security=True";
+        public string connectionString = File.ReadAllText(@"../../../Resource/SQLSTRING");
         public 添加课程()
         {
             InitializeComponent();

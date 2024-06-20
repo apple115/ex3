@@ -9,13 +9,14 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Linq.Expressions;
 using MongoDB.Driver.Core.Configuration;
+using Amazon.Auth.AccessControlPolicy;
 
 namespace WinFormsApp1
 {
     public partial class 登录界面 : Form
     {
         public string Username;
-        public string connectionString = @"Data Source=LAPTOP-DN3TKTF5;Initial Catalog=Class;Integrated Security=True;MultipleActiveResultSets=true";
+        public string connectionString = File.ReadAllText(@"../../../Resource/SQLSTRING");
         public 登录界面()
         {
             InitializeComponent();

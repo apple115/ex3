@@ -14,7 +14,7 @@ namespace WinFormsApp1
 {
     public partial class 添加学生 : Form
     {
-        private string connectionString = @"Data Source=LAPTOP-DN3TKTF5;Initial Catalog=Class;Integrated Security=True;MultipleActiveResultSets=true";
+        public string connectionString = File.ReadAllText(@"../../../Resource/SQLSTRING"); 
         private string selectedCourseNumber;
         public 添加学生(string selectedCourseNumber)
         {

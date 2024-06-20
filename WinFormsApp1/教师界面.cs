@@ -15,7 +15,7 @@ namespace WinFormsApp1
 {
     public partial class 教师界面 : Form
     {
-        private string connectionString = @"Data Source=LAPTOP-DN3TKTF5;Initial Catalog=Class;Integrated Security=True;MultipleActiveResultSets=true";
+        public string connectionString = File.ReadAllText(@"../../../Resource/SQLSTRING");
         private string loggedInUsername;
         public 教师界面(string loggedInUsername)
         {
@@ -170,4 +170,4 @@ namespace WinFormsApp1
             }
         }
     }
-}
+} 

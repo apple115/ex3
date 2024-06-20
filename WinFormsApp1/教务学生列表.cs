@@ -13,7 +13,7 @@ namespace WinFormsApp1
 {
     public partial class 教务学生列表 : Form
     {
-        private string connectionString = @"Data Source= LAPTOP-DN3TKTF5;Initial Catalog=Class;Integrated Security=True;MultipleActiveResultSets=true";
+        public string connectionString = File.ReadAllText(@"../../../Resource/SQLSTRING");
         private string selectedCourseNumber;
         public 教务学生列表(string 课号)
         {
