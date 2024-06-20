@@ -16,7 +16,7 @@ namespace WinFormsApp1
     {
         private string Username;
 
-        public string connectionString = File.ReadAllText(@"../../../Resource/SQLSTRING.txt");
+        public string connectionString = File.ReadAllText(@"../../../Resources/SQLSTRING.txt");
 
         public 教务界面(string Username)
         {

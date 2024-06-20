@@ -13,7 +13,7 @@ namespace WinFormsApp1
 {
     public partial class 教务学生列表 : Form
     {
-        public string connectionString = File.ReadAllText(@"../../../Resource/SQLSTRING.txt");
+        public string connectionString = File.ReadAllText(@"../../../Resources/SQLSTRING.txt");
         private string selectedCourseNumber;
         public 教务学生列表(string 课号)
         {
