@@ -18,7 +18,7 @@ namespace WinFormsApp1
         private string selectedCourseNumber;
         public delegate void CourseEditedHandler();
         public event CourseEditedHandler OnCourseEdited;
-        private string connectionString = @"Data Source=LAPTOP-DN3TKTF5;Initial Catalog=Class;Integrated Security=True;MultipleActiveResultSets=true";
+        public string connectionString = File.ReadAllText(@"../../../Resources/SQLSTRING.txt");
         public 编辑课程信息(string selectedCourseNumber)
         {
             InitializeComponent();

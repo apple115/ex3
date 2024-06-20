@@ -17,7 +17,7 @@ namespace WinFormsApp1
 
     public partial class 选课界面 : Form
     {
-        private string connectionString = File.ReadAllText(@"../../../Resources/SQLSTRING.txt");
+        public string connectionString = File.ReadAllText(@"../../../Resources/SQLSTRING.txt");
 
         private string loggedInUsername;
         public 选课界面(String Username)
@@ -182,7 +182,7 @@ namespace WinFormsApp1
                 string classNumber = selectedRow["课号"].ToString();
                 int courseScore = int.Parse(selectedRow["学分"].ToString());
                 // 查询当前用户的学分
-                int userScore = GetUserScore(loggedInUsername);
+                int userScore =Tools.Instance.GetUserScore(loggedInUsername);
                 // 检查学分是否足够
                 if (userScore >= courseScore)
                 {
