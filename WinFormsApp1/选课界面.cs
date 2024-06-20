@@ -18,6 +18,7 @@ namespace WinFormsApp1
     public partial class 选课界面 : Form
     {
         public string connectionString = File.ReadAllText(@"../../../Resource/SQLSTRING");
+
         private string loggedInUsername;
         public 选课界面(String Username)
         {

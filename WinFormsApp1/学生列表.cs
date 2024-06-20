@@ -14,7 +14,7 @@ namespace WinFormsApp1
 {
     public partial class 学生列表 : Form
     {
-        public string connectionString = File.ReadAllText(@"../../../Resource/SQLSTRING");
+        public string connectionString = File.ReadAllText(@"../../../Resources/SQLSTRING");
         private string selectedCourseNumber;
         public 学生列表(string 课号)
         {
