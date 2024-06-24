@@ -258,10 +258,7 @@ namespace WinFormsApp1
 
         private void AutoCourseTable_Click(object sender, EventArgs e)//当前课表
         {
-            if(节次 == 节次 && 日 == 日)
-            {
-                if
-            }
+            
         }
     }
 }
