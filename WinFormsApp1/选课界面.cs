@@ -182,7 +182,7 @@ namespace WinFormsApp1
                 string classNumber = selectedRow["课号"].ToString();
                 int courseScore = int.Parse(selectedRow["学分"].ToString());
                 // 查询当前用户的学分
-                int userScore =Tools.Instance.GetUserScore(loggedInUsername);
+                int userScore = Tools.Instance.GetUserScore(loggedInUsername);
                 // 检查学分是否足够
                 if (userScore >= courseScore)
                 {
@@ -242,12 +242,12 @@ namespace WinFormsApp1
         private void dg课程列表_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
-    {
-        // 获取选中行的课程号
-        string 课号 = dg课程列表.Rows[e.RowIndex].Cells["课号"].Value.ToString();
-        // 弹出窗口显示该课程的学生
-        ShowStudentsForCourse(课号);
-    }
+            {
+                // 获取选中行的课程号
+                string 课号 = dg课程列表.Rows[e.RowIndex].Cells["课号"].Value.ToString();
+                // 弹出窗口显示该课程的学生
+                ShowStudentsForCourse(课号);
+            }
         }
         private void ShowStudentsForCourse(string 课号)
         {
@@ -256,6 +256,12 @@ namespace WinFormsApp1
             studentWindow.Show();
         }
 
-        
+        private void AutoCourseTable_Click(object sender, EventArgs e)//当前课表
+        {
+            if(节次 == 节次 && 日 == 日)
+            {
+                if
+            }
+        }
     }
 }

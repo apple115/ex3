@@ -51,6 +51,7 @@
             lb欢迎同学 = new Label();
             bt刷新 = new Button();
             lb剩余学分 = new Label();
+            AutoCourseTable = new Button();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dg课程列表).BeginInit();
             SuspendLayout();
@@ -258,11 +259,22 @@
             lb剩余学分.TabIndex = 12;
             lb剩余学分.Text = "你还剩多少学分";
             // 
+            // AutoCourseTable
+            // 
+            AutoCourseTable.Location = new Point(12, 43);
+            AutoCourseTable.Name = "AutoCourseTable";
+            AutoCourseTable.Size = new Size(170, 29);
+            AutoCourseTable.TabIndex = 13;
+            AutoCourseTable.Text = "查看当前课表";
+            AutoCourseTable.UseVisualStyleBackColor = true;
+            AutoCourseTable.Click += AutoCourseTable_Click;
+            // 
             // 选课界面
             // 
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1082, 554);
+            Controls.Add(AutoCourseTable);
             Controls.Add(lb剩余学分);
             Controls.Add(bt刷新);
             Controls.Add(lb欢迎同学);
@@ -312,5 +324,6 @@
         private DataGridViewTextBoxColumn 教师;
         private DataGridViewTextBoxColumn 教室;
         private DataGridViewTextBoxColumn 学院;
+        private Button AutoCourseTable;
     }
 }
