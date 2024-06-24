@@ -79,6 +79,7 @@ namespace WinFormsApp1
                 Tools.Instance.UpdateStudentScore(loggedInUsername, userScore + points);
                 //更新
                 LoadDataToDataGridView();
+                DisplayScore();
 
             }
             catch (Exception ex)
