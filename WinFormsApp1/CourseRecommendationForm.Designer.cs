@@ -32,6 +32,8 @@
             label1 = new Label();
             button_refresh = new Button();
             dataGridView_courseRecommend = new DataGridView();
+            label2 = new Label();
+            textBox_inputScore = new TextBox();
             课号 = new DataGridViewTextBoxColumn();
             课名 = new DataGridViewTextBoxColumn();
             开始时间 = new DataGridViewTextBoxColumn();
@@ -39,17 +41,17 @@
             教师 = new DataGridViewTextBoxColumn();
             教室 = new DataGridViewTextBoxColumn();
             Column1 = new DataGridViewTextBoxColumn();
-            label2 = new Label();
-            textBox_inputScore = new TextBox();
+            选课人数 = new DataGridViewTextBoxColumn();
+            已选人数 = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView_courseRecommend).BeginInit();
             SuspendLayout();
             // 
             // courseSelect
             // 
-            courseSelect.Location = new Point(527, 562);
-            courseSelect.Margin = new Padding(3, 4, 3, 4);
+            courseSelect.Location = new Point(410, 478);
+            courseSelect.Margin = new Padding(2, 3, 2, 3);
             courseSelect.Name = "courseSelect";
-            courseSelect.Size = new Size(94, 29);
+            courseSelect.Size = new Size(73, 25);
             courseSelect.TabIndex = 1;
             courseSelect.Text = "选课";
             courseSelect.UseVisualStyleBackColor = true;
@@ -58,20 +60,18 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(357, 11);
-            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Location = new Point(398, 21);
             label1.Name = "label1";
-            label1.Size = new Size(69, 20);
+            label1.Size = new Size(56, 17);
             label1.TabIndex = 2;
             label1.Text = "推荐选课";
             label1.Click += label1_Click;
             // 
             // button_refresh
             // 
-            button_refresh.Location = new Point(25, 74);
-            button_refresh.Margin = new Padding(4);
+            button_refresh.Location = new Point(19, 63);
             button_refresh.Name = "button_refresh";
-            button_refresh.Size = new Size(96, 27);
+            button_refresh.Size = new Size(75, 23);
             button_refresh.TabIndex = 3;
             button_refresh.Text = "刷新";
             button_refresh.UseVisualStyleBackColor = true;
@@ -80,14 +80,31 @@
             // dataGridView_courseRecommend
             // 
             dataGridView_courseRecommend.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView_courseRecommend.Columns.AddRange(new DataGridViewColumn[] { 课号, 课名, 开始时间, 持续时间, 教师, 教室, Column1 });
-            dataGridView_courseRecommend.Location = new Point(25, 118);
-            dataGridView_courseRecommend.Margin = new Padding(4);
+            dataGridView_courseRecommend.Columns.AddRange(new DataGridViewColumn[] { 课号, 课名, 开始时间, 持续时间, 教师, 教室, Column1, 选课人数, 已选人数 });
+            dataGridView_courseRecommend.Location = new Point(19, 92);
             dataGridView_courseRecommend.Name = "dataGridView_courseRecommend";
             dataGridView_courseRecommend.RowHeadersWidth = 51;
             dataGridView_courseRecommend.RowTemplate.Height = 25;
-            dataGridView_courseRecommend.Size = new Size(1120, 427);
+            dataGridView_courseRecommend.Size = new Size(871, 363);
             dataGridView_courseRecommend.TabIndex = 4;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(57, 481);
+            label2.Margin = new Padding(2, 0, 2, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(56, 17);
+            label2.TabIndex = 5;
+            label2.Text = "输入分数";
+            // 
+            // textBox_inputScore
+            // 
+            textBox_inputScore.Location = new Point(126, 479);
+            textBox_inputScore.Margin = new Padding(2, 3, 2, 3);
+            textBox_inputScore.Name = "textBox_inputScore";
+            textBox_inputScore.Size = new Size(98, 23);
+            textBox_inputScore.TabIndex = 6;
             // 
             // 课号
             // 
@@ -138,34 +155,28 @@
             Column1.Name = "Column1";
             Column1.Width = 125;
             // 
-            // label2
+            // 选课人数
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(73, 566);
-            label2.Name = "label2";
-            label2.Size = new Size(69, 20);
-            label2.TabIndex = 5;
-            label2.Text = "输入分数";
+            选课人数.HeaderText = "人数";
+            选课人数.Name = "选课人数";
             // 
-            // textBox_inputScore
+            // 已选人数
             // 
-            textBox_inputScore.Location = new Point(162, 563);
-            textBox_inputScore.Name = "textBox_inputScore";
-            textBox_inputScore.Size = new Size(125, 27);
-            textBox_inputScore.TabIndex = 6;
+            已选人数.HeaderText = "已选人数";
+            已选人数.Name = "已选人数";
             // 
             // CourseRecommendationform
             // 
-            AutoScaleDimensions = new SizeF(9F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1147, 618);
+            ClientSize = new Size(892, 525);
             Controls.Add(textBox_inputScore);
             Controls.Add(label2);
             Controls.Add(dataGridView_courseRecommend);
             Controls.Add(button_refresh);
             Controls.Add(label1);
             Controls.Add(courseSelect);
-            Margin = new Padding(3, 4, 3, 4);
+            Margin = new Padding(2, 3, 2, 3);
             Name = "CourseRecommendationform";
             Text = "CourseRecommendationform";
             Load += CourseRecommendationform_Load;
@@ -179,6 +190,8 @@
         private Label label1;
         private Button button_refresh;
         private DataGridView dataGridView_courseRecommend;
+        private Label label2;
+        private TextBox textBox_inputScore;
         private DataGridViewTextBoxColumn 课号;
         private DataGridViewTextBoxColumn 课名;
         private DataGridViewTextBoxColumn 开始时间;
@@ -186,7 +199,7 @@
         private DataGridViewTextBoxColumn 教师;
         private DataGridViewTextBoxColumn 教室;
         private DataGridViewTextBoxColumn Column1;
-        private Label label2;
-        private TextBox textBox_inputScore;
+        private DataGridViewTextBoxColumn 选课人数;
+        private DataGridViewTextBoxColumn 已选人数;
     }
 }

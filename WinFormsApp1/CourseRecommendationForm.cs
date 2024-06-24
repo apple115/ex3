@@ -31,41 +31,49 @@ namespace WinFormsApp1
             label1.Text = "推荐选课系统";
         }
 
+        /// <summary>
+        /// 1.选择当前的课程信息
+        /// 2.查看当前用户的学分
+        /// 3.获得当前得用户输入的得分
+        /// 4.如果当前用户输入学分小于用户
+        /// 5.在数据库中记录当前的学生用户id+分数id+课程id
+        /// 在这个中 -1 表示没有
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void courseSelect_Click(object sender, EventArgs e)
         {
             try
             {
                 // 获取当前选中的课程信息
                 DataRowView selectedRow = (DataRowView)dataGridView_courseRecommend.CurrentRow.DataBoundItem;
-                string classNumber = selectedRow["课号"].ToString();
-                int courseScore = int.Parse(selectedRow["学分"].ToString());
-                // 查询当前用户的学分
-                int userScore = Tools.Instance.GetUserScore(loggedInUsername);
+                string classNumber = selectedRow["课号"]?.ToString()??"-1";
 
+                // 查询当前用户的学分
+                int userScore = Tools.Instance.getStudentScore(loggedInUsername);
+
+                // 输入的的分数
                 int inputScore = 0;
                 if (textBox_inputScore.Text.Length > 0)
                 {
                     inputScore = int.Parse(textBox_inputScore.Text);
                 }
+
                 if(userScore <inputScore)
                 {
-                    MessageBox.Show("超出自己拥有的分数。");
+                    MessageBox.Show("投分失败,请重新输入。");
+                    textBox_inputScore.Text = "";
+                    return;
                 }
-                else
-                {
-                    // 更新 Select_Class 表
-                    //InsertIntoSelectClass(loggedInUsername, classNumber);
-                    // 更新 Student 表中的学分
-                    UpdateUserScore(loggedInUsername, userScore - courseScore);
-                    MessageBox.Show("选课成功！");
-                    // 刷新剩余学分的显示
-                    //DisplayRemainingCredits();
-                }
+                // 在数据库中记录当前的学生用户id+分数id+课程id
+                Tools.Instance.addCoursesPoints(loggedInUsername,inputScore,classNumber);
+
             }
             catch (FormatException)
             {
                 // 处理格式错误的情况，例如显示错误消息
                 MessageBox.Show("请输入一个有效的整数。");
+                textBox_inputScore.Text = "";
             }
             catch (OverflowException)
             {
@@ -74,8 +82,7 @@ namespace WinFormsApp1
             }
             catch (Exception ex)
             {
-                MessageBox.Show("选课失败，学分不足！");
-
+                MessageBox.Show("投分失败");
             }
         }
 
@@ -89,13 +96,13 @@ namespace WinFormsApp1
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = @"SELECT  Number as 课号, Name as 课名, StartTime as 开始时间, DuringTime as 持续时间, Teacher as 教师, Classroom as 教室, College as 学院, Score as 学分
-FROM ClassTable ct
-WHERE EXISTS (
-    SELECT 1 FROM Student s
-    WHERE s.Username = 20215024 AND ct.Score < s.Score
-)
-ORDER BY ct.Score ASC;";
+                    string query = @"SELECT  Number as 课号, Name as 课名, StartTime as 开始时间, DuringTime as 持续时间, Teacher as 教师, Classroom as 教室, College as 学院, Capacity as 最多人数,Selected as 已选人数
+                        FROM ClassTable ct
+                        WHERE EXISTS (
+                            SELECT 1 FROM Student s
+                            WHERE s.Username = 20215024 AND ct.Score < s.Score
+                        )
+                        ORDER BY ct.Score ASC;";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         SqlDataAdapter adapter = new SqlDataAdapter(command);
@@ -113,7 +120,8 @@ ORDER BY ct.Score ASC;";
                         dataGridView_courseRecommend.Columns["教师"].DataPropertyName = "教师";
                         dataGridView_courseRecommend.Columns["教室"].DataPropertyName = "教室";
                         dataGridView_courseRecommend.Columns["学院"].DataPropertyName = "学院";
-                        dataGridView_courseRecommend.Columns["学分"].DataPropertyName = "学分";
+                        dataGridView_courseRecommend.Columns["人数"].DataPropertyName = "最多人数";             
+                        dataGridView_courseRecommend.Columns["已选人数"].DataPropertyName = "已选人数";             
                     }
                 }
             }

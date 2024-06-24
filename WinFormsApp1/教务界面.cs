@@ -87,6 +87,48 @@ namespace WinFormsApp1
                 MessageBox.Show("请选择要编辑的课程。");
             }
         }
+
+        /// <summary>
+        /// 1.从ClassTable 中读取 课程id Number  可选数量 Capacity 已选数量 Selected 
+        /// 对于每个课程
+        ///     从CoursesPoints 按照课程id 按照分数(Point)从大到小 读取可选容量(capacity) 用户(UserId) 课程(Coursesld) 分数(Points),清空这个
+        ///         按照这个可选排名
+        ///             对于每个人
+        ///                 选课信息放入Select_Class
+        ///                 selected 更改
+        ///               
+        /// 清空所有CoursePoint的信息
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_stopSelectCourse_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //1 
+                DataTable classTable = Tools.Instance.getClassTableALLNumberCapacityAndSelected();
+                foreach (DataRow row in classTable.Rows)
+                {
+                    string classTable_number = (String)row["Number"];
+                    int classTable_capacity = (int)row["Capacity"];
+                    int classTable_selected = (int)row["selected"];
+                    DataTable CoursePoints = Tools.Instance.getScoreByCoursesIdSortPointsByCourseIdAndCapacity(classTable_number,classTable_capacity-classTable_selected);
+                    foreach(DataRow cpRow in CoursePoints.Rows)
+                    {
+                        Tools.Instance.addSelectClass((string)cpRow["UserId"], classTable_number);
+                        classTable_selected++;
+                    }
+                    Tools.Instance.setSelectedInClassTable(classTable_number,classTable_selected);
+                }
+                Tools.Instance.deleteAllCouresPoint();
+                MessageBox.Show("已经停止选课");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("数据库连接错误：" + ex.Message);
+            }
+        }
+
         private void LoadAllCoursesToDataGridView()
         {
             try
@@ -174,6 +216,7 @@ namespace WinFormsApp1
                 MessageBox.Show("发生错误：" + ex.Message);
             }
         }
+
     }
 
 }

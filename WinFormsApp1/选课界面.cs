@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -33,6 +35,17 @@ namespace WinFormsApp1
             登录界面 loginForm = new 登录界面();
             loginForm.Show();
         }
+
+        private void 推荐选课ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            this.Hide();
+            CourseRecommendationform courseRecommendationform = new CourseRecommendationform(loggedInUsername);
+            courseRecommendationform.Show();
+        }
+
+
+
         private void 选课界面_Load_1(object sender, EventArgs e)
         {
             // 在窗体加载时执行查询操作
@@ -48,12 +61,29 @@ namespace WinFormsApp1
         {
             try
             {
+                string query = "";
+                // 表示用户已经选择过的课程(id)就是这个Number
+                DataTable enrolledCourses = Tools.Instance.getCourseIdByuserIdInCoursesPoints(loggedInUsername);
+                string enrolledCourseIds = string.Join(",", enrolledCourses.AsEnumerable()  // 将DataTable转换为Enumerable
+                             .Select(row => row.Field<string>("CoursesId"))  // 假设CoursesId是int类型
+                             .ToArray());  // 转换为数组
+
+                if (enrolledCourses.Rows.Count == 0)
+                {
+                    query = @"SELECT Number as 课号, Name as 课名, StartTime as 开始时间, DuringTime as 持续时间, Teacher as 教师, Classroom as 教室, College as 学院, Capacity as 最多人数,Selected as 已选人数 FROM ClassTable";
+                }
+                else
+                {
+                    query = @"SELECT Number as 课号, Name as 课名, StartTime as 开始时间, DuringTime as 持续时间, Teacher as 教师, Classroom as 教室, College as 学院, Capacity as 最多人数,Selected as 已选人数 FROM ClassTable WHERE Number NOT IN (" + enrolledCourseIds + ")";
+                    //根据这个过滤可以选择的课程范围
+                }
+
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT Number as 课号, Name as 课名, StartTime as 开始时间, DuringTime as 持续时间, Teacher as 教师, Classroom as 教室, College as 学院, Score as 学分 FROM ClassTable";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
+
                         SqlDataAdapter adapter = new SqlDataAdapter(command);
                         DataTable dataTable = new DataTable();
                         adapter.Fill(dataTable);
@@ -69,7 +99,8 @@ namespace WinFormsApp1
                         dg课程列表.Columns["教师"].DataPropertyName = "教师";
                         dg课程列表.Columns["教室"].DataPropertyName = "教室";
                         dg课程列表.Columns["学院"].DataPropertyName = "学院";
-                        dg课程列表.Columns["学分"].DataPropertyName = "学分";
+                        dg课程列表.Columns["最多人数"].DataPropertyName = "最多人数";
+                        dg课程列表.Columns["已选人数"].DataPropertyName = "已选人数";
                     }
                 }
             }
@@ -152,7 +183,7 @@ namespace WinFormsApp1
         {
             try
             {
-                int userScore = Tools.Instance.GetUserScore(loggedInUsername);
+                int userScore = Tools.Instance.getStudentScore(loggedInUsername);
                 lb剩余学分.Text = $"你还剩 {userScore} 学分";
             }
             catch (Exception ex)
@@ -179,59 +210,39 @@ namespace WinFormsApp1
             {
                 // 获取当前选中的课程信息
                 DataRowView selectedRow = (DataRowView)dg课程列表.CurrentRow.DataBoundItem;
-                string classNumber = selectedRow["课号"].ToString();
-                int courseScore = int.Parse(selectedRow["学分"].ToString());
+                string classNumber = selectedRow["课号"]?.ToString() ?? "-1";
                 // 查询当前用户的学分
-                int userScore = Tools.Instance.GetUserScore(loggedInUsername);
-                // 检查学分是否足够
-                if (userScore >= courseScore)
+
+                int userScore = Tools.Instance.getStudentScore(loggedInUsername);
+
+                int inputScore = 0;
+                if (textBox_inputScore.Text.Length > 0)
                 {
-                    // 更新 Select_Class 表
-                    InsertIntoSelectClass(loggedInUsername, classNumber);
-                    // 更新 Student 表中的学分
-                    UpdateUserScore(loggedInUsername, userScore - courseScore);
-                    MessageBox.Show("选课成功！");
-                    // 刷新剩余学分的显示
-                    DisplayRemainingCredits();
+                    inputScore = int.Parse(textBox_inputScore.Text);
                 }
                 else
                 {
-                    MessageBox.Show("选课失败，学分不足！");
+                    MessageBox.Show("未输入分数");
+                    return;
                 }
+
+                if (userScore < inputScore)
+                {
+                    MessageBox.Show("投分失败,请重新输入。");
+                    textBox_inputScore.Text = "";
+                    return;
+                }
+                Tools.Instance.addCoursesPoints(loggedInUsername, inputScore, classNumber);
+                Tools.Instance.UpdateStudentScore(loggedInUsername, userScore - inputScore);
+                MessageBox.Show("投分成功");
+                //刷新view
+                LoadDataToDataGridView();
+                //刷新学分
+                DisplayRemainingCredits();
             }
             catch (Exception ex)
             {
                 MessageBox.Show("选课失败：" + ex.Message);
-            }
-        }
-        // 更新 Student 表中的学分
-        private void UpdateUserScore(string username, int newScore)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = "UPDATE Student SET Score = @Score WHERE Username = @Username";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@Score", newScore);
-                    command.Parameters.AddWithValue("@Username", username);
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
-        // 插入一条元组到 Select_Class 表
-        private void InsertIntoSelectClass(string studentNumber, string classNumber)
-        {
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                string query = "INSERT INTO Select_Class (Student_Number, Class_Number) VALUES (@StudentNumber, @ClassNumber)";
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@StudentNumber", studentNumber);
-                    command.Parameters.AddWithValue("@ClassNumber", classNumber);
-                    command.ExecuteNonQuery();
-                }
             }
         }
         private void 选课界面_FormClosing(object sender, FormClosingEventArgs e)
@@ -256,9 +267,25 @@ namespace WinFormsApp1
             studentWindow.Show();
         }
 
+
         private void AutoCourseTable_Click(object sender, EventArgs e)//当前课表
         {
-            
+        }  
+
+        private void 退出登录ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 查看已投ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            已投分编辑界面 form = new 已投分编辑界面(loggedInUsername);
+            form.Show();
+        }
+
+        private void lb剩余学分_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
