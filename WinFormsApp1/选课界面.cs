@@ -212,6 +212,7 @@ namespace WinFormsApp1
                 DataRowView selectedRow = (DataRowView)dg课程列表.CurrentRow.DataBoundItem;
                 string classNumber = selectedRow["课号"]?.ToString() ?? "-1";
                 // 查询当前用户的学分
+
                 int userScore = Tools.Instance.getStudentScore(loggedInUsername);
 
                 int inputScore = 0;
@@ -265,6 +266,11 @@ namespace WinFormsApp1
             学生列表 studentWindow = new 学生列表(课号);
             studentWindow.Show();
         }
+
+
+        private void AutoCourseTable_Click(object sender, EventArgs e)//当前课表
+        {
+        }  
 
         private void 退出登录ToolStripMenuItem_Click(object sender, EventArgs e)
         {

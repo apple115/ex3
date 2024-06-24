@@ -57,6 +57,7 @@
             lb剩余学分 = new Label();
             textBox_inputScore = new TextBox();
             label3 = new Label();
+            AutoCourseTable = new Button();
             menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dg课程列表).BeginInit();
             SuspendLayout();
@@ -318,6 +319,16 @@
             label3.TabIndex = 14;
             label3.Text = "输入分数";
             // 
+            // AutoCourseTable
+            // 
+            AutoCourseTable.Location = new Point(12, 43);
+            AutoCourseTable.Name = "AutoCourseTable";
+            AutoCourseTable.Size = new Size(170, 29);
+            AutoCourseTable.TabIndex = 13;
+            AutoCourseTable.Text = "查看当前课表";
+            AutoCourseTable.UseVisualStyleBackColor = true;
+            AutoCourseTable.Click += AutoCourseTable_Click;
+            // 
             // 选课界面
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -325,6 +336,8 @@
             ClientSize = new Size(842, 471);
             Controls.Add(label3);
             Controls.Add(textBox_inputScore);
+            ClientSize = new Size(1082, 554);
+            Controls.Add(AutoCourseTable);
             Controls.Add(lb剩余学分);
             Controls.Add(bt刷新);
             Controls.Add(lb欢迎同学);
@@ -381,5 +394,6 @@
         private Label label3;
         private ToolStripMenuItem 推荐选课ToolStripMenuItem;
         private ToolStripMenuItem 查看已投ToolStripMenuItem;
+        private Button AutoCourseTable;
     }
 }
