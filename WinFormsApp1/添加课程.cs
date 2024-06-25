@@ -29,7 +29,10 @@ namespace WinFormsApp1
             string teacher = tb教师.Text;
             string classroom = tb教室.Text;
             string college = tb学院.Text;
-            string score = tb学分.Text;
+            string s_week = tb开始周次.Text;
+            string f_week = tb结束周次.Text;
+            string day = tb星期.Text;
+            string time = tb节次.Text;
             // 检查是否存在相同课号的课程
             if (IsCourseNumberExist(courseNumber))
             {
@@ -37,7 +40,7 @@ namespace WinFormsApp1
                 return; // 如果存在相同课号的课程，不执行添加操作
             }
             // 执行添加课程的操作
-            AddCourse(courseNumber, courseName, startTime, duringTime, teacher, classroom, college, score);
+            AddCourse(courseNumber, courseName, startTime, duringTime, teacher, classroom, college, s_week, f_week, day, time);
         }
         private bool IsCourseNumberExist(string courseNumber)
         {
@@ -61,7 +64,7 @@ namespace WinFormsApp1
                 return false; // 出现异常，默认返回不存在相同课号的课程
             }
         }
-        private void AddCourse(string courseNumber, string courseName, string startTime, string duringTime, string teacher, string classroom, string college, string score)
+        private void AddCourse(string courseNumber, string courseName, string startTime, string duringTime, string teacher, string classroom, string college, string s_week, string f_week, string day, string time)
         {
             try
             {
@@ -69,8 +72,8 @@ namespace WinFormsApp1
                 {
                     connection.Open();
                     // 执行插入新课程的 SQL 语句
-                    string insertQuery = $"INSERT INTO ClassTable (Number, Name, StartTime, DuringTime, Teacher, Classroom, College, Score) " +
-                                         $"VALUES ('{courseNumber}', '{courseName}', '{startTime}', '{duringTime}', '{teacher}', '{classroom}', '{college}', '{score}')";
+                    string insertQuery = $"INSERT INTO ClassTable (Number, Name, StartTime, DuringTime, Teacher, Classroom, College, StartWeek, FinWeek, Day, Time) " +
+                                         $"VALUES ('{courseNumber}', '{courseName}', '{startTime}', '{duringTime}', '{teacher}', '{classroom}', '{college}', '{s_week}','{f_week}', '{day}','{time}')";
                     using (SqlCommand command = new SqlCommand(insertQuery, connection))
                     {
                         command.ExecuteNonQuery();
@@ -87,6 +90,19 @@ namespace WinFormsApp1
         private void 添加课程_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide();
+        }
+
+        private void 添加课程_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lb开始周次_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void lb结束周次_Click(object sender, EventArgs e)
+        {
         }
     }
 }

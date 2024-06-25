@@ -93,6 +93,7 @@
             // 
             // 登录界面
             // 
+            AcceptButton = bt登录;
             AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackgroundImageLayout = ImageLayout.Center;

@@ -4,10 +4,12 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace WinFormsApp1
 {
@@ -50,7 +52,10 @@ namespace WinFormsApp1
                                 tb教师.Text = reader["Teacher"].ToString();
                                 tb教室.Text = reader["Classroom"].ToString();
                                 tb学院.Text = reader["College"].ToString();
-                                tb学分.Text = reader["Score"].ToString();
+                                tb开始周次.Text = reader["StartWeek"].ToString();
+                                tb结束周次.Text = reader["FinWeek"].ToString();
+                                tb星期.Text = reader["Day"].ToString();
+                                tb节次.Text = reader["Time"].ToString();
                             }
                         }
                     }
@@ -70,13 +75,16 @@ namespace WinFormsApp1
             string teacher = tb教师.Text;
             string classroom = tb教室.Text;
             string college = tb学院.Text;
-            string score = tb学分.Text;
+            string s_week = tb开始周次.Text;
+            string f_week = tb结束周次.Text;
+            string day = tb星期.Text;
+            string time = tb节次.Text;
             // 更新数据库中的课程信息
-            UpdateCourseInfo(selectedCourseNumber, courseName, startTime, duringTime, teacher, classroom, college, score);
+            UpdateCourseInfo(selectedCourseNumber, courseName, startTime, duringTime, teacher, classroom, college, s_week, f_week, day, time);
             // 触发事件，通知父窗口刷新课程列表
             OnCourseEdited?.Invoke();
         }
-        private void UpdateCourseInfo(string courseNumber, string courseName, string startTime, string duringTime, string teacher, string classroom, string college, string credit)
+        private void UpdateCourseInfo(string courseNumber, string courseName, string startTime, string duringTime, string teacher, string classroom, string college, string s_week, string f_week, string day, string time)
         {
             try
             {
@@ -85,7 +93,7 @@ namespace WinFormsApp1
                     connection.Open();
                     // 在此处执行将课程信息更新到 ClassTable 表的 SQL 语句
                     string updateCourseQuery = $"UPDATE ClassTable SET Name = '{courseName}', StartTime = '{startTime}', DuringTime = '{duringTime}', " +
-                                                $"Teacher = '{teacher}', Classroom = '{classroom}', College = '{college}', Score = '{credit}' " +
+                    $"Teacher = '{teacher}', Classroom = '{classroom}', College = '{college}', StartWeek =  '{s_week}', FinWeek = '{f_week}', Day = '{day}', Time = '{time}'" +
                                                 $"WHERE Number = '{courseNumber}'";
                     using (SqlCommand command = new SqlCommand(updateCourseQuery, connection))
                     {

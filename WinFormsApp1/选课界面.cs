@@ -266,11 +266,11 @@ namespace WinFormsApp1
             学生列表 studentWindow = new 学生列表(课号);
             studentWindow.Show();
         }
-
-
         private void AutoCourseTable_Click(object sender, EventArgs e)//当前课表
         {
-        }  
+            课程表 form2 = new 课程表(loggedInUsername);
+            form2.Show();
+        }
 
         private void 退出登录ToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -281,9 +281,15 @@ namespace WinFormsApp1
         {
             已投分编辑界面 form = new 已投分编辑界面(loggedInUsername);
             form.Show();
+            DisplayRemainingCredits();
         }
 
         private void lb剩余学分_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
         {
 
         }

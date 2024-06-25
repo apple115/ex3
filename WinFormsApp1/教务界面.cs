@@ -30,7 +30,7 @@ namespace WinFormsApp1
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT Number as 课号, Name as 课名, StartTime as 开始时间, DuringTime as 持续时间, Teacher as 教师, Classroom as 教室, College as 学院 FROM ClassTable";
+                    string query = "SELECT Number as 课号, Name as 课名, StartTime as 开始时间, DuringTime as 持续时间, Teacher as 教师, Classroom as 教室, College as 学院, Day as 星期, Time as 节次 FROM ClassTable";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         SqlDataAdapter adapter = new SqlDataAdapter(command);
@@ -48,6 +48,8 @@ namespace WinFormsApp1
                         dg教务课程列表.Columns["教师"].DataPropertyName = "教师";
                         dg教务课程列表.Columns["教室"].DataPropertyName = "教室";
                         dg教务课程列表.Columns["学院"].DataPropertyName = "学院";
+                        dg教务课程列表.Columns["星期"].DataPropertyName = "星期";//新增1
+                        dg教务课程列表.Columns["节次"].DataPropertyName = "节次";//新增2
                     }
                 }
             }
@@ -112,13 +114,13 @@ namespace WinFormsApp1
                     string classTable_number = (String)row["Number"];
                     int classTable_capacity = (int)row["Capacity"];
                     int classTable_selected = (int)row["selected"];
-                    DataTable CoursePoints = Tools.Instance.getScoreByCoursesIdSortPointsByCourseIdAndCapacity(classTable_number,classTable_capacity-classTable_selected);
-                    foreach(DataRow cpRow in CoursePoints.Rows)
+                    DataTable CoursePoints = Tools.Instance.getScoreByCoursesIdSortPointsByCourseIdAndCapacity(classTable_number, classTable_capacity - classTable_selected);
+                    foreach (DataRow cpRow in CoursePoints.Rows)
                     {
                         Tools.Instance.addSelectClass((string)cpRow["UserId"], classTable_number);
                         classTable_selected++;
                     }
-                    Tools.Instance.setSelectedInClassTable(classTable_number,classTable_selected);
+                    Tools.Instance.setSelectedInClassTable(classTable_number, classTable_selected);
                 }
                 Tools.Instance.deleteAllCouresPoint();
                 MessageBox.Show("已经停止选课");
@@ -136,7 +138,7 @@ namespace WinFormsApp1
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
-                    string query = "SELECT Number as 课号, Name as 课名, StartTime as 开始时间, DuringTime as 持续时间, Teacher as 教师, Classroom as 教室, College as 学院 FROM ClassTable";
+                    string query = "SELECT Number as 课号, Name as 课名, StartTime as 开始时间, DuringTime as 持续时间, Teacher as 教师, Classroom as 教室, College as 学院, Day as 星期, Time as 节次 FROM ClassTable";
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         SqlDataAdapter adapter = new SqlDataAdapter(command);
@@ -154,6 +156,8 @@ namespace WinFormsApp1
                         dg教务课程列表.Columns["教师"].DataPropertyName = "教师";
                         dg教务课程列表.Columns["教室"].DataPropertyName = "教室";
                         dg教务课程列表.Columns["学院"].DataPropertyName = "学院";
+                        dg教务课程列表.Columns["星期"].DataPropertyName = "星期";//新增1
+                        dg教务课程列表.Columns["节次"].DataPropertyName = "节次";//新增2
                     }
                 }
             }
@@ -217,6 +221,10 @@ namespace WinFormsApp1
             }
         }
 
+        private void dg教务课程列表_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 
 }

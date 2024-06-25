@@ -292,6 +292,30 @@ namespace WinFormsApp1
                 }
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns>返回Name,Classroom,StartWeek, FinWeek,Day,Time</returns>
+        public DataTable GetCourseDataByUserid(string userid)
+        {
+            DataTable result = new DataTable();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+
+                connection.Open();
+                string query = @"Select  Name,Classroom,StartWeek, FinWeek,Day,Time From ClassTable,Select_Class WHERE Class_Number = Number AND Student_Number = @stuNumber";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        command.Parameters.AddWithValue("@stuNumber", userid);
+                        adapter.Fill(result);
+                    }
+                }
+            }
+            return result;
+        }
 
     }
 }
