@@ -97,9 +97,10 @@ namespace WinFormsApp1
         ///         按照这个可选排名
         ///             对于每个人
         ///                 选课信息放入Select_Class
-        ///                 删除这个数据
+        ///                 删除这个CoursePoints的数据
         ///                 selected 更改
-        ///               
+        ///             
+        /// 剩下的返换
         /// 清空所有CoursePoint的信息
         /// 返回这个的数据
         /// </summary>
