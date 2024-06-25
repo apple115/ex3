@@ -97,9 +97,11 @@ namespace WinFormsApp1
         ///         按照这个可选排名
         ///             对于每个人
         ///                 选课信息放入Select_Class
+        ///                 删除这个数据
         ///                 selected 更改
         ///               
         /// 清空所有CoursePoint的信息
+        /// 返回这个的数据
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -118,9 +120,21 @@ namespace WinFormsApp1
                     foreach (DataRow cpRow in CoursePoints.Rows)
                     {
                         Tools.Instance.addSelectClass((string)cpRow["UserId"], classTable_number);
+                        Tools.Instance.deleteInCoursesPoinst((string)cpRow["UserID"],classTable_number);
                         classTable_selected++;
                     }
+                    //跟该 select 中的数据
                     Tools.Instance.setSelectedInClassTable(classTable_number, classTable_selected);
+                }
+
+                DataTable coursePoint = Tools.Instance.getAllCoursePoint();
+                foreach (DataRow row in coursePoint.Rows)
+                {
+                    string userId = (String)row["UserId"];
+                    int points = (int)row["Points"];
+                    string courseId = (string)row["CoursesId"];
+                    int current_points = Tools.Instance.getStudentScore(userId);
+                    Tools.Instance.UpdateStudentScore(userId, current_points + points);
                 }
                 Tools.Instance.deleteAllCouresPoint();
                 MessageBox.Show("已经停止选课");

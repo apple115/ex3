@@ -217,7 +217,6 @@ namespace WinFormsApp1
         /// <param name="username">输入用户id</param>
         public void deleteInCoursesPoinst(string courseId,string username)
         {
-
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -230,6 +229,24 @@ namespace WinFormsApp1
                 }
             }
 
+        }
+
+        /// <summary>
+        /// 删除这个CouresPoint
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="courseId"></param>
+        public void deleteCouresPointByUserIdAndCouresId(string userId,string courseId)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"DELETE FROM CoursesPoints WHERE ";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
         }
 
         /// <summary>
@@ -247,6 +264,26 @@ namespace WinFormsApp1
                 }
             }
         }
+
+         public DataTable getAllCoursePoint()
+        {
+            DataTable result = new DataTable();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"SELECT * FROM CoursesPoints";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(result);
+                    }
+                }
+            }
+            return result;
+        }
+
+
 
 
         /// <summary>
