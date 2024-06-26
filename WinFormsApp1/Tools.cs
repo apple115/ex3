@@ -350,7 +350,7 @@ namespace WinFormsApp1
         /// </summary>
         /// <param name="userid"></param>
         /// <returns>返回Name,Classroom,Day,Time</returns>
-        public DataTable getCourseDataByUserid(string userid,string week)
+        public DataTable getCourseDataByUseridAndWeek(string userid,string week)
         {
             DataTable result = new DataTable();
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -370,7 +370,28 @@ namespace WinFormsApp1
             return result;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userid"></param>
+        /// <returns>返回Name,Classroom,Day,Time</returns>
+        public DataTable getCourseDataByUserid()
+        {
+            DataTable result = new DataTable();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"Select StuId,Name,Classroom,ct.Week,ct.Day,ct.Time From ClassTable,CoursesTime ct,Student WHERE ClassNumber = Number";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        adapter.Fill(result);
+                    }
+                }
+            }
+            return result;
+        }
 
 
         /// <summary>
@@ -410,6 +431,23 @@ namespace WinFormsApp1
             {
                 connection.Open();
                 string query = @"INSERT INTO CoursesTime (StuId,ClassNumber,Week,Day,Time) VALUES (@StuId,@ClassId,@Week,@Day,@Time)";
+                using (SqlCommand command = new SqlCommand(query, connection)){
+                    command.Parameters.AddWithValue("@StuId", stuId);
+                    command.Parameters.AddWithValue("@ClassId", classId);
+                    command.Parameters.AddWithValue("@Week", week);
+                    command.Parameters.AddWithValue("@Day", day);
+                    command.Parameters.AddWithValue("@Time", time);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void updateCouresTime(string stuId,string classId,string week,string day,string time)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"Update CoursesTime set day = @Day,time=@Time WHERE StuId = @StuId and ClassNumber = @ClassId and Week = @Week";
                 using (SqlCommand command = new SqlCommand(query, connection)){
                     command.Parameters.AddWithValue("@StuId", stuId);
                     command.Parameters.AddWithValue("@ClassId", classId);

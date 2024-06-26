@@ -75,7 +75,7 @@ namespace WinFormsApp1
         {
             try
             {
-            DataTable courseData = Tools.Instance.getCourseDataByUserid(username,week.ToString());
+            DataTable courseData = Tools.Instance.getCourseDataByUseridAndWeek(username,week.ToString());
             // 第一节课
             listView1.Items.Clear();
             ListViewItem item1 = new ListViewItem("星期一");

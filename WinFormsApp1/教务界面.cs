@@ -260,9 +260,10 @@ namespace WinFormsApp1
                     string day = (string)row["Day"];
                     string time = (string)row["Time"];
                     bool hasAllocation = (bool)row["HasAllocation"];
-                    
-                    if (!hasAllocation) { 
-                        for(int i = int.Parse(startWeek); i <= int.Parse(finWeek); i++)
+
+                    if (!hasAllocation)
+                    {
+                        for (int i = int.Parse(startWeek); i <= int.Parse(finWeek); i++)
                         {
                             Tools.Instance.addCoursesTime(studentId, classId, i.ToString(), day, time);
                         }
@@ -270,10 +271,17 @@ namespace WinFormsApp1
                     }
                 }
                 MessageBox.Show("分配成功");
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("发生错误:" + ex.Message);
             }
+        }
+
+        private void 课程时间ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            教务课程时间更改界面 view = new 教务课程时间更改界面();
+            view.Show();
         }
     }
 

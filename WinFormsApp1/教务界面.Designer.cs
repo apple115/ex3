@@ -47,6 +47,7 @@
             bt删除课程 = new Button();
             button_stopSelectCourse = new Button();
             button_courseTime = new Button();
+            课程时间ToolStripMenuItem = new ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)dg教务课程列表).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -162,7 +163,7 @@
             // 
             // 快速访问ToolStripMenuItem
             // 
-            快速访问ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 退出登录ToolStripMenuItem });
+            快速访问ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 退出登录ToolStripMenuItem, 课程时间ToolStripMenuItem });
             快速访问ToolStripMenuItem.Name = "快速访问ToolStripMenuItem";
             快速访问ToolStripMenuItem.Size = new Size(68, 21);
             快速访问ToolStripMenuItem.Text = "快速访问";
@@ -170,7 +171,7 @@
             // 退出登录ToolStripMenuItem
             // 
             退出登录ToolStripMenuItem.Name = "退出登录ToolStripMenuItem";
-            退出登录ToolStripMenuItem.Size = new Size(124, 22);
+            退出登录ToolStripMenuItem.Size = new Size(180, 22);
             退出登录ToolStripMenuItem.Text = "退出登录";
             // 
             // bt编辑课程
@@ -226,6 +227,13 @@
             button_courseTime.UseVisualStyleBackColor = true;
             button_courseTime.Click += button_courseTime_Click;
             // 
+            // 课程时间ToolStripMenuItem
+            // 
+            课程时间ToolStripMenuItem.Name = "课程时间ToolStripMenuItem";
+            课程时间ToolStripMenuItem.Size = new Size(180, 22);
+            课程时间ToolStripMenuItem.Text = "课程时间更改";
+            课程时间ToolStripMenuItem.Click += 课程时间ToolStripMenuItem_Click;
+            // 
             // 教务界面
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
@@ -272,5 +280,6 @@
         private DataGridViewTextBoxColumn 星期;
         private DataGridViewTextBoxColumn 节次;
         private Button button_courseTime;
+        private ToolStripMenuItem 课程时间ToolStripMenuItem;
     }
 }
