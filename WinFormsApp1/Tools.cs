@@ -458,5 +458,26 @@ namespace WinFormsApp1
                 }
             }
         }
+        public DataTable getTeacherCourseDataByUserIdAndWeek(string userId,string week)
+        {
+            DataTable result = new DataTable();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = @"Select DISTINCT cls.Name,cls.Classroom,co.Day,co.Time from  ClassTable cls,CoursesTime co,Teacher te 
+WHERE cls.Number =co.ClassNumber And cls.Teacher = te.Name And te.Username = @UserId And co.Week = @Week";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        command.Parameters.AddWithValue("@UserId", userId);
+                        command.Parameters.AddWithValue("@Week", week);
+                        adapter.Fill(result);
+                    }
+                }
+            }
+            return result;
+        }
+
     }
 }

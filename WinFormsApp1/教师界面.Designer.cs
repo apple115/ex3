@@ -42,6 +42,7 @@
             ab欢迎教师 = new Label();
             bt刷新 = new Button();
             bt我教授的课 = new Button();
+            button_查看课表 = new Button();
             ms快速访问.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dg课程列表).BeginInit();
             SuspendLayout();
@@ -52,7 +53,8 @@
             ms快速访问.Items.AddRange(new ToolStripItem[] { 快速访问ToolStripMenuItem });
             ms快速访问.Location = new Point(0, 0);
             ms快速访问.Name = "ms快速访问";
-            ms快速访问.Size = new Size(982, 28);
+            ms快速访问.Padding = new Padding(5, 2, 0, 2);
+            ms快速访问.Size = new Size(764, 25);
             ms快速访问.TabIndex = 0;
             ms快速访问.Text = "menuStrip1";
             // 
@@ -60,13 +62,13 @@
             // 
             快速访问ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 退出登录ToolStripMenuItem });
             快速访问ToolStripMenuItem.Name = "快速访问ToolStripMenuItem";
-            快速访问ToolStripMenuItem.Size = new Size(83, 24);
+            快速访问ToolStripMenuItem.Size = new Size(68, 21);
             快速访问ToolStripMenuItem.Text = "快速访问";
             // 
             // 退出登录ToolStripMenuItem
             // 
             退出登录ToolStripMenuItem.Name = "退出登录ToolStripMenuItem";
-            退出登录ToolStripMenuItem.Size = new Size(224, 26);
+            退出登录ToolStripMenuItem.Size = new Size(124, 22);
             退出登录ToolStripMenuItem.Text = "退出登录";
             退出登录ToolStripMenuItem.Click += 退出登录ToolStripMenuItem_Click;
             // 
@@ -74,12 +76,13 @@
             // 
             dg课程列表.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dg课程列表.Columns.AddRange(new DataGridViewColumn[] { 课号, 课名, 开始时间, 持续时间, 教师, 教室, 学院 });
-            dg课程列表.Location = new Point(28, 112);
+            dg课程列表.Location = new Point(22, 95);
+            dg课程列表.Margin = new Padding(2, 3, 2, 3);
             dg课程列表.Name = "dg课程列表";
             dg课程列表.ReadOnly = true;
             dg课程列表.RowHeadersWidth = 51;
             dg课程列表.RowTemplate.Height = 29;
-            dg课程列表.Size = new Size(930, 328);
+            dg课程列表.Size = new Size(723, 279);
             dg课程列表.TabIndex = 1;
             dg课程列表.CellDoubleClick += dg课程列表_CellDoubleClick;
             // 
@@ -143,17 +146,19 @@
             // 
             ab欢迎教师.AutoSize = true;
             ab欢迎教师.Font = new Font("楷体", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            ab欢迎教师.Location = new Point(381, 68);
+            ab欢迎教师.Location = new Point(296, 58);
+            ab欢迎教师.Margin = new Padding(2, 0, 2, 0);
             ab欢迎教师.Name = "ab欢迎教师";
-            ab欢迎教师.Size = new Size(253, 30);
+            ab欢迎教师.Size = new Size(202, 24);
             ab欢迎教师.TabIndex = 2;
             ab欢迎教师.Text = "欢迎来到教师界面";
             // 
             // bt刷新
             // 
-            bt刷新.Location = new Point(28, 74);
+            bt刷新.Location = new Point(22, 63);
+            bt刷新.Margin = new Padding(2, 3, 2, 3);
             bt刷新.Name = "bt刷新";
-            bt刷新.Size = new Size(102, 32);
+            bt刷新.Size = new Size(79, 27);
             bt刷新.TabIndex = 3;
             bt刷新.Text = "刷新";
             bt刷新.UseVisualStyleBackColor = true;
@@ -161,25 +166,38 @@
             // 
             // bt我教授的课
             // 
-            bt我教授的课.Location = new Point(28, 446);
+            bt我教授的课.Location = new Point(22, 379);
+            bt我教授的课.Margin = new Padding(2, 3, 2, 3);
             bt我教授的课.Name = "bt我教授的课";
-            bt我教授的课.Size = new Size(111, 38);
+            bt我教授的课.Size = new Size(86, 32);
             bt我教授的课.TabIndex = 4;
             bt我教授的课.Text = "我教授的课";
             bt我教授的课.UseVisualStyleBackColor = true;
             bt我教授的课.Click += bt我教授的课_Click;
             // 
+            // button_查看课表
+            // 
+            button_查看课表.Location = new Point(22, 34);
+            button_查看课表.Name = "button_查看课表";
+            button_查看课表.Size = new Size(75, 23);
+            button_查看课表.TabIndex = 5;
+            button_查看课表.Text = "查看课表";
+            button_查看课表.UseVisualStyleBackColor = true;
+            button_查看课表.Click += button_查看课表_Click;
+            // 
             // 教师界面
             // 
-            AutoScaleDimensions = new SizeF(9F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(982, 553);
+            ClientSize = new Size(764, 470);
+            Controls.Add(button_查看课表);
             Controls.Add(bt我教授的课);
             Controls.Add(bt刷新);
             Controls.Add(ab欢迎教师);
             Controls.Add(dg课程列表);
             Controls.Add(ms快速访问);
             MainMenuStrip = ms快速访问;
+            Margin = new Padding(2, 3, 2, 3);
             Name = "教师界面";
             Text = "教师界面";
             FormClosing += 教师界面_FormClosing;
@@ -209,5 +227,6 @@
         private Label ab欢迎教师;
         private Button bt刷新;
         private Button bt我教授的课;
+        private Button button_查看课表;
     }
 }

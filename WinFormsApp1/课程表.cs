@@ -16,7 +16,6 @@ namespace WinFormsApp1
 {
     public partial class 课程表 : Form
     {
-        public string connectionString = File.ReadAllText(@"../../../Resources/SQLSTRING.txt");
         public string username;
         public int week;
 

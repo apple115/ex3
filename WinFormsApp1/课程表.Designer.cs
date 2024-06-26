@@ -38,6 +38,13 @@
             第三节 = new ColumnHeader();
             第四节 = new ColumnHeader();
             第五节 = new ColumnHeader();
+            listView2 = new ListView();
+            columnHeader1 = new ColumnHeader();
+            columnHeader2 = new ColumnHeader();
+            columnHeader3 = new ColumnHeader();
+            columnHeader4 = new ColumnHeader();
+            columnHeader5 = new ColumnHeader();
+            columnHeader6 = new ColumnHeader();
             SuspendLayout();
             // 
             // bt导出课程表
@@ -112,11 +119,52 @@
             第五节.Text = "第五节";
             第五节.Width = 150;
             // 
+            // listView2
+            // 
+            listView2.Columns.AddRange(new ColumnHeader[] { columnHeader1, columnHeader2, columnHeader3, columnHeader4, columnHeader5, columnHeader6 });
+            listView2.Location = new Point(81, 121);
+            listView2.Margin = new Padding(2, 3, 2, 3);
+            listView2.Name = "listView2";
+            listView2.Size = new Size(837, 368);
+            listView2.TabIndex = 5;
+            listView2.UseCompatibleStateImageBehavior = false;
+            listView2.View = View.Details;
+            // 
+            // columnHeader1
+            // 
+            columnHeader1.Text = "节次";
+            // 
+            // columnHeader2
+            // 
+            columnHeader2.Text = "第一节";
+            columnHeader2.Width = 150;
+            // 
+            // columnHeader3
+            // 
+            columnHeader3.Text = "第二节";
+            columnHeader3.Width = 150;
+            // 
+            // columnHeader4
+            // 
+            columnHeader4.Text = "第三节";
+            columnHeader4.Width = 150;
+            // 
+            // columnHeader5
+            // 
+            columnHeader5.Text = "第四节";
+            columnHeader5.Width = 150;
+            // 
+            // columnHeader6
+            // 
+            columnHeader6.Text = "第五节";
+            columnHeader6.Width = 150;
+            // 
             // 课程表
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(998, 611);
+            Controls.Add(listView2);
             Controls.Add(listView1);
             Controls.Add(label1);
             Controls.Add(cb课程表);
@@ -140,5 +188,12 @@
         private ColumnHeader 第四节;
         private ColumnHeader 第五节;
         private ColumnHeader Timeuiop;
+        private ListView listView2;
+        private ColumnHeader columnHeader1;
+        private ColumnHeader columnHeader2;
+        private ColumnHeader columnHeader3;
+        private ColumnHeader columnHeader4;
+        private ColumnHeader columnHeader5;
+        private ColumnHeader columnHeader6;
     }
 }
