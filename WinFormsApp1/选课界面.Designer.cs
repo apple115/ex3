@@ -36,10 +36,7 @@
             cb学院 = new ComboBox();
             menuStrip1 = new MenuStrip();
             退出登录ToolStripMenuItem = new ToolStripMenuItem();
-            信息系统ToolStripMenuItem = new ToolStripMenuItem();
-            课程系统ToolStripMenuItem = new ToolStripMenuItem();
             退出登录ToolStripMenuItem1 = new ToolStripMenuItem();
-            推荐选课ToolStripMenuItem = new ToolStripMenuItem();
             查看已投ToolStripMenuItem = new ToolStripMenuItem();
             dg课程列表 = new DataGridView();
             课号 = new DataGridViewTextBoxColumn();
@@ -135,23 +132,11 @@
             // 
             // 退出登录ToolStripMenuItem
             // 
-            退出登录ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 信息系统ToolStripMenuItem, 课程系统ToolStripMenuItem, 退出登录ToolStripMenuItem1, 推荐选课ToolStripMenuItem, 查看已投ToolStripMenuItem });
+            退出登录ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 退出登录ToolStripMenuItem1, 查看已投ToolStripMenuItem });
             退出登录ToolStripMenuItem.Name = "退出登录ToolStripMenuItem";
             退出登录ToolStripMenuItem.Size = new Size(83, 24);
             退出登录ToolStripMenuItem.Text = "快速访问";
             退出登录ToolStripMenuItem.Click += 退出登录ToolStripMenuItem_Click;
-            // 
-            // 信息系统ToolStripMenuItem
-            // 
-            信息系统ToolStripMenuItem.Name = "信息系统ToolStripMenuItem";
-            信息系统ToolStripMenuItem.Size = new Size(224, 26);
-            信息系统ToolStripMenuItem.Text = "信息系统";
-            // 
-            // 课程系统ToolStripMenuItem
-            // 
-            课程系统ToolStripMenuItem.Name = "课程系统ToolStripMenuItem";
-            课程系统ToolStripMenuItem.Size = new Size(224, 26);
-            课程系统ToolStripMenuItem.Text = "课程系统";
             // 
             // 退出登录ToolStripMenuItem1
             // 
@@ -159,13 +144,6 @@
             退出登录ToolStripMenuItem1.Size = new Size(224, 26);
             退出登录ToolStripMenuItem1.Text = "退出登录";
             退出登录ToolStripMenuItem1.Click += 退出登录ToolStripMenuItem1_Click;
-            // 
-            // 推荐选课ToolStripMenuItem
-            // 
-            推荐选课ToolStripMenuItem.Name = "推荐选课ToolStripMenuItem";
-            推荐选课ToolStripMenuItem.Size = new Size(224, 26);
-            推荐选课ToolStripMenuItem.Text = "推荐选课";
-            推荐选课ToolStripMenuItem.Click += 推荐选课ToolStripMenuItem_Click;
             // 
             // 查看已投ToolStripMenuItem
             // 
@@ -374,8 +352,6 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem 退出登录ToolStripMenuItem;
         private DataGridView dg课程列表;
-        private ToolStripMenuItem 信息系统ToolStripMenuItem;
-        private ToolStripMenuItem 课程系统ToolStripMenuItem;
         private ToolStripMenuItem 退出登录ToolStripMenuItem1;
         private Button bt选课;
         private Label lb欢迎同学;
@@ -392,7 +368,6 @@
         private DataGridViewTextBoxColumn 已选人数;
         private TextBox textBox_inputScore;
         private Label label3;
-        private ToolStripMenuItem 推荐选课ToolStripMenuItem;
         private ToolStripMenuItem 查看已投ToolStripMenuItem;
         private Button AutoCourseTable;
     }

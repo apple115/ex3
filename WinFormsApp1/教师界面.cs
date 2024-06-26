@@ -102,7 +102,7 @@ namespace WinFormsApp1
                                     if (!string.IsNullOrEmpty(teacherName))
                                     {
                                         // 根据教师姓名获取教师所教授的课程
-                                        string teacherCoursesQuery = $"SELECT Number as 课号, Name as 课名, StartTime as 开始时间, DuringTime as 持续时间, Classroom as 教室, College as 学院, Day as 星期, Time as 节次 FROM ClassTable" +
+                                        string teacherCoursesQuery = $"SELECT Number as 课号, Name as 课名, StartTime as 开始时间, DuringTime as 持续时间, Classroom as 教室, College as 学院, Day as 星期, Time as 节次 " +
                                                                     $"FROM ClassTable WHERE Teacher = '{teacherName}'";
                                         using (SqlCommand command = new SqlCommand(teacherCoursesQuery, connection))
                                         {
@@ -173,4 +173,4 @@ namespace WinFormsApp1
             }
         }
     }
-} 
+}

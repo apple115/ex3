@@ -203,6 +203,8 @@ namespace WinFormsApp1
             string filterExpression = "";
             // 应用筛选条件
             ApplyFilter(filterExpression);
+            DisplayRemainingCredits();
+
         }
         private void bt选课_Click(object sender, EventArgs e)
         {

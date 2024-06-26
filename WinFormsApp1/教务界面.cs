@@ -121,7 +121,7 @@ namespace WinFormsApp1
                     foreach (DataRow cpRow in CoursePoints.Rows)
                     {
                         Tools.Instance.addSelectClass((string)cpRow["UserId"], classTable_number);
-                        Tools.Instance.deleteInCoursesPoinst((string)cpRow["UserID"],classTable_number);
+                        Tools.Instance.deleteInCoursesPoinst((string)cpRow["UserID"], classTable_number);
                         classTable_selected++;
                     }
                     //跟该 select 中的数据

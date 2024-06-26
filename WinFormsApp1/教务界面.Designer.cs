@@ -41,9 +41,6 @@
             节次 = new DataGridViewTextBoxColumn();
             menuStrip1 = new MenuStrip();
             快速访问ToolStripMenuItem = new ToolStripMenuItem();
-            信息系统ToolStripMenuItem = new ToolStripMenuItem();
-            课程系统ToolStripMenuItem = new ToolStripMenuItem();
-            教务系统ToolStripMenuItem = new ToolStripMenuItem();
             退出登录ToolStripMenuItem = new ToolStripMenuItem();
             bt编辑课程 = new Button();
             bt添加课程 = new Button();
@@ -162,33 +159,15 @@
             // 
             // 快速访问ToolStripMenuItem
             // 
-            快速访问ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 信息系统ToolStripMenuItem, 课程系统ToolStripMenuItem, 教务系统ToolStripMenuItem, 退出登录ToolStripMenuItem });
+            快速访问ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 退出登录ToolStripMenuItem });
             快速访问ToolStripMenuItem.Name = "快速访问ToolStripMenuItem";
             快速访问ToolStripMenuItem.Size = new Size(83, 24);
             快速访问ToolStripMenuItem.Text = "快速访问";
             // 
-            // 信息系统ToolStripMenuItem
-            // 
-            信息系统ToolStripMenuItem.Name = "信息系统ToolStripMenuItem";
-            信息系统ToolStripMenuItem.Size = new Size(152, 26);
-            信息系统ToolStripMenuItem.Text = "信息系统";
-            // 
-            // 课程系统ToolStripMenuItem
-            // 
-            课程系统ToolStripMenuItem.Name = "课程系统ToolStripMenuItem";
-            课程系统ToolStripMenuItem.Size = new Size(152, 26);
-            课程系统ToolStripMenuItem.Text = "课程系统";
-            // 
-            // 教务系统ToolStripMenuItem
-            // 
-            教务系统ToolStripMenuItem.Name = "教务系统ToolStripMenuItem";
-            教务系统ToolStripMenuItem.Size = new Size(152, 26);
-            教务系统ToolStripMenuItem.Text = "教务系统";
-            // 
             // 退出登录ToolStripMenuItem
             // 
             退出登录ToolStripMenuItem.Name = "退出登录ToolStripMenuItem";
-            退出登录ToolStripMenuItem.Size = new Size(152, 26);
+            退出登录ToolStripMenuItem.Size = new Size(224, 26);
             退出登录ToolStripMenuItem.Text = "退出登录";
             // 
             // bt编辑课程
@@ -265,9 +244,6 @@
         private DataGridView dg教务课程列表;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem 快速访问ToolStripMenuItem;
-        private ToolStripMenuItem 信息系统ToolStripMenuItem;
-        private ToolStripMenuItem 课程系统ToolStripMenuItem;
-        private ToolStripMenuItem 教务系统ToolStripMenuItem;
         private ToolStripMenuItem 退出登录ToolStripMenuItem;
         private Button bt编辑课程;
         private Button bt添加课程;

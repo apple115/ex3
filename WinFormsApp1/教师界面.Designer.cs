@@ -30,8 +30,6 @@
         {
             ms快速访问 = new MenuStrip();
             快速访问ToolStripMenuItem = new ToolStripMenuItem();
-            信息系统ToolStripMenuItem = new ToolStripMenuItem();
-            课程系统ToolStripMenuItem = new ToolStripMenuItem();
             退出登录ToolStripMenuItem = new ToolStripMenuItem();
             dg课程列表 = new DataGridView();
             课号 = new DataGridViewTextBoxColumn();
@@ -60,27 +58,15 @@
             // 
             // 快速访问ToolStripMenuItem
             // 
-            快速访问ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 信息系统ToolStripMenuItem, 课程系统ToolStripMenuItem, 退出登录ToolStripMenuItem });
+            快速访问ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 退出登录ToolStripMenuItem });
             快速访问ToolStripMenuItem.Name = "快速访问ToolStripMenuItem";
             快速访问ToolStripMenuItem.Size = new Size(83, 24);
             快速访问ToolStripMenuItem.Text = "快速访问";
             // 
-            // 信息系统ToolStripMenuItem
-            // 
-            信息系统ToolStripMenuItem.Name = "信息系统ToolStripMenuItem";
-            信息系统ToolStripMenuItem.Size = new Size(152, 26);
-            信息系统ToolStripMenuItem.Text = "信息系统";
-            // 
-            // 课程系统ToolStripMenuItem
-            // 
-            课程系统ToolStripMenuItem.Name = "课程系统ToolStripMenuItem";
-            课程系统ToolStripMenuItem.Size = new Size(152, 26);
-            课程系统ToolStripMenuItem.Text = "课程系统";
-            // 
             // 退出登录ToolStripMenuItem
             // 
             退出登录ToolStripMenuItem.Name = "退出登录ToolStripMenuItem";
-            退出登录ToolStripMenuItem.Size = new Size(152, 26);
+            退出登录ToolStripMenuItem.Size = new Size(224, 26);
             退出登录ToolStripMenuItem.Text = "退出登录";
             退出登录ToolStripMenuItem.Click += 退出登录ToolStripMenuItem_Click;
             // 
