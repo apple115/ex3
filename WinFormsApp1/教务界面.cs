@@ -240,6 +240,41 @@ namespace WinFormsApp1
         {
 
         }
+
+        /// <summary>
+        /// 将这个根据这个Select_class和class_Table 添加到这个Courses Points 中
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void button_courseTime_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataTable courseData = Tools.Instance.getCourseData();
+                foreach (DataRow row in courseData.Rows)
+                {
+                    string studentId = (string)row["Student_Number"];
+                    string classId = (string)row["Class_Number"];
+                    string startWeek = (string)row["StartWeek"];
+                    string finWeek = (string)row["FinWeek"];
+                    string day = (string)row["Day"];
+                    string time = (string)row["Time"];
+                    bool hasAllocation = (bool)row["HasAllocation"];
+                    
+                    if (!hasAllocation) { 
+                        for(int i = int.Parse(startWeek); i <= int.Parse(finWeek); i++)
+                        {
+                            Tools.Instance.addCoursesTime(studentId, classId, i.ToString(), day, time);
+                        }
+                        Tools.Instance.updateHasAlloctionInSelectClass(studentId, classId);
+                    }
+                }
+                MessageBox.Show("分配成功");
+            }catch(Exception ex)
+            {
+                MessageBox.Show("发生错误:" + ex.Message);
+            }
+        }
     }
 
 }

@@ -46,6 +46,7 @@
             bt添加课程 = new Button();
             bt删除课程 = new Button();
             button_stopSelectCourse = new Button();
+            button_courseTime = new Button();
             ((System.ComponentModel.ISupportInitialize)dg教务课程列表).BeginInit();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -54,9 +55,10 @@
             // 
             lb欢迎教务.AutoSize = true;
             lb欢迎教务.Font = new Font("楷体", 18F, FontStyle.Regular, GraphicsUnit.Point);
-            lb欢迎教务.Location = new Point(379, 49);
+            lb欢迎教务.Location = new Point(295, 42);
+            lb欢迎教务.Margin = new Padding(2, 0, 2, 0);
             lb欢迎教务.Name = "lb欢迎教务";
-            lb欢迎教务.Size = new Size(253, 30);
+            lb欢迎教务.Size = new Size(202, 24);
             lb欢迎教务.TabIndex = 5;
             lb欢迎教务.Text = "欢迎来到教务界面";
             // 
@@ -64,13 +66,13 @@
             // 
             dg教务课程列表.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dg教务课程列表.Columns.AddRange(new DataGridViewColumn[] { 课号, 课名, 开始时间, 持续时间, 教师, 教室, 学院, 星期, 节次 });
-            dg教务课程列表.Location = new Point(30, 136);
-            dg教务课程列表.Margin = new Padding(3, 4, 3, 4);
+            dg教务课程列表.Location = new Point(23, 116);
+            dg教务课程列表.Margin = new Padding(2, 3, 2, 3);
             dg教务课程列表.Name = "dg教务课程列表";
             dg教务课程列表.ReadOnly = true;
             dg教务课程列表.RowHeadersWidth = 51;
             dg教务课程列表.RowTemplate.Height = 29;
-            dg教务课程列表.Size = new Size(1183, 328);
+            dg教务课程列表.Size = new Size(920, 279);
             dg教务课程列表.TabIndex = 4;
             dg教务课程列表.CellContentClick += dg教务课程列表_CellContentClick;
             dg教务课程列表.CellDoubleClick += dg教务课程列表_CellDoubleClick;
@@ -153,7 +155,8 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { 快速访问ToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(1231, 28);
+            menuStrip1.Padding = new Padding(5, 2, 0, 2);
+            menuStrip1.Size = new Size(957, 25);
             menuStrip1.TabIndex = 6;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -161,21 +164,21 @@
             // 
             快速访问ToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { 退出登录ToolStripMenuItem });
             快速访问ToolStripMenuItem.Name = "快速访问ToolStripMenuItem";
-            快速访问ToolStripMenuItem.Size = new Size(83, 24);
+            快速访问ToolStripMenuItem.Size = new Size(68, 21);
             快速访问ToolStripMenuItem.Text = "快速访问";
             // 
             // 退出登录ToolStripMenuItem
             // 
             退出登录ToolStripMenuItem.Name = "退出登录ToolStripMenuItem";
-            退出登录ToolStripMenuItem.Size = new Size(224, 26);
+            退出登录ToolStripMenuItem.Size = new Size(124, 22);
             退出登录ToolStripMenuItem.Text = "退出登录";
             // 
             // bt编辑课程
             // 
-            bt编辑课程.Location = new Point(194, 91);
-            bt编辑课程.Margin = new Padding(3, 4, 3, 4);
+            bt编辑课程.Location = new Point(151, 77);
+            bt编辑课程.Margin = new Padding(2, 3, 2, 3);
             bt编辑课程.Name = "bt编辑课程";
-            bt编辑课程.Size = new Size(121, 39);
+            bt编辑课程.Size = new Size(94, 33);
             bt编辑课程.TabIndex = 8;
             bt编辑课程.Text = "修改信息";
             bt编辑课程.UseVisualStyleBackColor = true;
@@ -183,10 +186,10 @@
             // 
             // bt添加课程
             // 
-            bt添加课程.Location = new Point(30, 91);
-            bt添加课程.Margin = new Padding(3, 4, 3, 4);
+            bt添加课程.Location = new Point(23, 77);
+            bt添加课程.Margin = new Padding(2, 3, 2, 3);
             bt添加课程.Name = "bt添加课程";
-            bt添加课程.Size = new Size(121, 39);
+            bt添加课程.Size = new Size(94, 33);
             bt添加课程.TabIndex = 9;
             bt添加课程.Text = "添加课程";
             bt添加课程.UseVisualStyleBackColor = true;
@@ -194,10 +197,10 @@
             // 
             // bt删除课程
             // 
-            bt删除课程.Location = new Point(357, 91);
-            bt删除课程.Margin = new Padding(3, 4, 3, 4);
+            bt删除课程.Location = new Point(278, 77);
+            bt删除课程.Margin = new Padding(2, 3, 2, 3);
             bt删除课程.Name = "bt删除课程";
-            bt删除课程.Size = new Size(121, 39);
+            bt删除课程.Size = new Size(94, 33);
             bt删除课程.TabIndex = 10;
             bt删除课程.Text = "删除课程";
             bt删除课程.UseVisualStyleBackColor = true;
@@ -205,20 +208,30 @@
             // 
             // button_stopSelectCourse
             // 
-            button_stopSelectCourse.Location = new Point(531, 91);
-            button_stopSelectCourse.Margin = new Padding(4);
+            button_stopSelectCourse.Location = new Point(413, 77);
             button_stopSelectCourse.Name = "button_stopSelectCourse";
-            button_stopSelectCourse.Size = new Size(121, 39);
+            button_stopSelectCourse.Size = new Size(94, 33);
             button_stopSelectCourse.TabIndex = 11;
             button_stopSelectCourse.Text = "停止选课";
             button_stopSelectCourse.UseVisualStyleBackColor = true;
             button_stopSelectCourse.Click += button_stopSelectCourse_Click;
             // 
+            // button_courseTime
+            // 
+            button_courseTime.Location = new Point(542, 77);
+            button_courseTime.Name = "button_courseTime";
+            button_courseTime.Size = new Size(99, 33);
+            button_courseTime.TabIndex = 12;
+            button_courseTime.Text = "分配时间";
+            button_courseTime.UseVisualStyleBackColor = true;
+            button_courseTime.Click += button_courseTime_Click;
+            // 
             // 教务界面
             // 
-            AutoScaleDimensions = new SizeF(9F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1231, 553);
+            ClientSize = new Size(957, 470);
+            Controls.Add(button_courseTime);
             Controls.Add(button_stopSelectCourse);
             Controls.Add(bt删除课程);
             Controls.Add(bt添加课程);
@@ -227,7 +240,7 @@
             Controls.Add(dg教务课程列表);
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
-            Margin = new Padding(3, 4, 3, 4);
+            Margin = new Padding(2, 3, 2, 3);
             Name = "教务界面";
             Text = "教务界面";
             FormClosing += 教务界面_FormClosing;
@@ -258,5 +271,6 @@
         private DataGridViewTextBoxColumn 学院;
         private DataGridViewTextBoxColumn 星期;
         private DataGridViewTextBoxColumn 节次;
+        private Button button_courseTime;
     }
 }

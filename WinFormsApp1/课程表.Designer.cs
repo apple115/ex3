@@ -53,7 +53,7 @@
             // cb课程表
             // 
             cb课程表.FormattingEnabled = true;
-            cb课程表.Location = new Point(192, 20);
+            cb课程表.Location = new Point(345, 25);
             cb课程表.Margin = new Padding(2, 3, 2, 3);
             cb课程表.Name = "cb课程表";
             cb课程表.Size = new Size(118, 25);
@@ -64,7 +64,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("宋体", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(134, 21);
+            label1.Location = new Point(287, 26);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new Size(55, 16);
