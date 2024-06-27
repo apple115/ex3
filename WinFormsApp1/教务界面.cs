@@ -240,6 +240,19 @@ namespace WinFormsApp1
         {
 
         }
+
+        private void 退出登录ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            // 打开登录界面
+            登录界面 loginForm = new 登录界面();
+            loginForm.Show();
+        }
+
+        private void 快速访问ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

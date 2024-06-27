@@ -163,12 +163,14 @@
             快速访问ToolStripMenuItem.Name = "快速访问ToolStripMenuItem";
             快速访问ToolStripMenuItem.Size = new Size(83, 24);
             快速访问ToolStripMenuItem.Text = "快速访问";
+            快速访问ToolStripMenuItem.Click += 快速访问ToolStripMenuItem_Click;
             // 
             // 退出登录ToolStripMenuItem
             // 
             退出登录ToolStripMenuItem.Name = "退出登录ToolStripMenuItem";
             退出登录ToolStripMenuItem.Size = new Size(224, 26);
             退出登录ToolStripMenuItem.Text = "退出登录";
+            退出登录ToolStripMenuItem.Click += 退出登录ToolStripMenuItem_Click;
             // 
             // bt编辑课程
             // 
