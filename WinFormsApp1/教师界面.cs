@@ -172,5 +172,11 @@ namespace WinFormsApp1
                 MessageBox.Show("数据库连接错误：" + ex.Message);
             }
         }
+
+        private void button_查看课表_Click(object sender, EventArgs e)
+        {
+            var view = new 教师课程表(loggedInUsername);
+            view.Show();
+        }
     }
 }
